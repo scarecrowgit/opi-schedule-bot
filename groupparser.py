@@ -1,10 +1,10 @@
 import json as j
-class Parser:
+class GroupParser:
     def __init__(self):
         pass
 
 
-    def parse_json(self, json, group_title):
+    def getGroupCodeByTitle(self, json, group_title):
         raw = j.loads(json)
         for element in raw['lastScheduleFiles']:
             title = element['title']
