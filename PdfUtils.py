@@ -40,7 +40,3 @@ class PdfUtils:
 
     def clearDatas(self):
         """TODO"""
-
-
-PdfUtils = PdfUtils("vb-9822-22")
-PdfUtils.createImageFromPdf()
