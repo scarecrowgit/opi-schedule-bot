@@ -1,3 +1,5 @@
+aiogram
 requests
 pdf2image
 python-poppler
+
