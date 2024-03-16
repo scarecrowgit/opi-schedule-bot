@@ -34,9 +34,13 @@ class PdfUtils:
             os.makedirs(PdfUtils.output_folder)
         if self.downloadPdf():
             self.convertToPng()
-            print("PDF успешно сконвертирован в PNG.")
-        else:
-            print("Не удалось загрузить PDF-файл.")
 
     def clearDatas(self):
-        """TODO"""
+        for filename in os.listdir(PdfUtils.output_folder):
+            if filename.startswith(self.group_code):
+                file_path = os.path.join(PdfUtils.output_folder, filename)
+                try:
+                    os.remove(file_path)
+                except OSError as e:
+                    raise OSError(f"Ошибка при удалении файла '{filename}': {e.strerror}")
+
