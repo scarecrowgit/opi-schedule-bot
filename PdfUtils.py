@@ -34,13 +34,6 @@ class PdfUtils:
             os.makedirs(PdfUtils.output_folder)
         if self.downloadPdf():
             self.convertToPng()
-            print("PDF успешно сконвертирован в PNG.")
-        else:
-            print("Не удалось загрузить PDF-файл.")
 
     def clearDatas(self):
         """TODO"""
-
-
-PdfUtils = PdfUtils("vb-9822-22")
-PdfUtils.createImageFromPdf()
