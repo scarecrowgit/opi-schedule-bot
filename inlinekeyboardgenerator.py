@@ -1,5 +1,4 @@
-from aiogram.types import InlineKeyboardButton, ReplyKeyboardMarkup
-from aiogram.utils.keyboard import InlineKeyboardBuilder, ReplyKeyboardBuilder
+from aiogram.utils.keyboard import InlineKeyboardBuilder
 from groupdata import GroupData
 
 class InlineKeyboardGenerator:

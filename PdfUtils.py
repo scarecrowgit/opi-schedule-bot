@@ -1,3 +1,5 @@
+import time
+
 import requests
 from pdf2image import convert_from_path
 import os
@@ -16,7 +18,7 @@ class PdfUtils:
         response = requests.get(PdfUtils.url + self.group_code, verify=False)
 
         if response.status_code == 200:
-            with open(PdfUtils.save_path, 'wb') as f:
+            with open(self.save_path, 'wb') as f:
                 f.write(response.content)
             return True
         else:
@@ -24,15 +26,16 @@ class PdfUtils:
             return False
 
     def convertToPng(self):
-        images = convert_from_path(PdfUtils.save_path)
+        images = convert_from_path(self.save_path)
         for i, image in enumerate(images):
-            image_path = os.path.join(PdfUtils.output_folder, f"{PdfUtils.group_code}_{i+1}.png")
+            image_path = os.path.join(PdfUtils.output_folder, f"{self.group_code}_{i+1}.png")
             image.save(image_path, "PNG")
 
     def createImageFromPdf(self):
         if not os.path.exists(PdfUtils.output_folder):
             os.makedirs(PdfUtils.output_folder)
         if self.downloadPdf():
+
             self.convertToPng()
 
     def clearDatas(self):
