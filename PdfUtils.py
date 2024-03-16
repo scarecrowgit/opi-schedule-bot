@@ -43,3 +43,4 @@ class PdfUtils:
                     os.remove(file_path)
                 except OSError as e:
                     raise OSError(f"Ошибка при удалении файла '{filename}': {e.strerror}")
+
