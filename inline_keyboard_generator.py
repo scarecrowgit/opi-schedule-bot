@@ -5,7 +5,7 @@ class InlineKeyboardGenerator:
     def __init__(self):
         pass
 
-    def generateKeyboardByGroupDataList(self, groupdata_list: list[GroupData]):
+    def generate_keyboard_by_group_data_list(self, groupdata_list: list[GroupData]):
         builder = InlineKeyboardBuilder()
         for item in groupdata_list:
             title = item.title
