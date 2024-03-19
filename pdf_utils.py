@@ -14,7 +14,7 @@ class PdfUtils:
         self.save_path = os.path.join(PdfUtils.output_folder, f"{self.group_code}.pdf")
 
 
-    def downloadPdf(self):
+    def download_pdf(self):
         response = requests.get(PdfUtils.url + self.group_code, verify=False)
 
         if response.status_code == 200:
@@ -25,20 +25,20 @@ class PdfUtils:
             print("Failed to download PDF:", response.status_code)
             return False
 
-    def convertToPng(self):
+    def convert_to_png(self):
         images = convert_from_path(self.save_path)
         for i, image in enumerate(images):
             image_path = os.path.join(PdfUtils.output_folder, f"{self.group_code}_{i+1}.png")
             image.save(image_path, "PNG")
 
-    def createImageFromPdf(self):
+    def create_image_from_pdf(self):
         if not os.path.exists(PdfUtils.output_folder):
             os.makedirs(PdfUtils.output_folder)
         if self.downloadPdf():
 
             self.convertToPng()
 
-    def clearDatas(self):
+    def clear_datas(self):
         for filename in os.listdir(PdfUtils.output_folder):
             if filename.startswith(self.group_code):
                 file_path = os.path.join(PdfUtils.output_folder, filename)
