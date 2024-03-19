@@ -1,8 +1,8 @@
 import asyncio
-from groupparser import GroupParser
-from inlinekeyboardgenerator import InlineKeyboardGenerator
+from group_parser import GroupParser
+from inline_keyboard_generator import InlineKeyboardGenerator
 from aiogram import Dispatcher, Bot
-from PdfUtils import PdfUtils
+from pdf_utils import PdfUtils
 from aiogram.filters import CommandStart
 from aiogram.types import *
 from aiogram.client.default import DefaultBotProperties
@@ -35,8 +35,8 @@ async def start(mess: Message):
             await mess.answer(opi_response.text + '\n error of fetching schedule')
             return
         schedule_json = opi_response.json()
-        groupdata_list = parser.getGroupCodesList(schedule_json)
-        markup = kb_generator.generateKeyboardByGroupDataList(groupdata_list)
+        groupdata_list = parser.get_group_codes_list(schedule_json)
+        markup = kb_generator.generate_keyboard_by_group_data_list(groupdata_list)
 
         await mess.answer('Для того чтобы пользоваться ботом, выберите свою группу', reply_markup=markup)
     else:
@@ -60,14 +60,14 @@ async def send_images(group_code, mess: Message):
 
     folder = PdfUtils.output_folder
     pdf_giver = PdfUtils(group_code)
-    pdf_giver.createImageFromPdf()
+    pdf_giver.create_image_from_pdf()
     file_names = os.listdir(folder)
     media_group = MediaGroupBuilder()
     for filename in file_names:
         if filename.endswith('png'):
             media_group.add(type='photo', media=FSInputFile(os.path.join(folder, filename)))
     await mess.answer_media_group(media=media_group.build())
-    pdf_giver.clearDatas()
+    pdf_giver.clear_datas()
 
 
 async def main() -> None:
