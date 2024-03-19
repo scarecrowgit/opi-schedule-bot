@@ -31,9 +31,9 @@ class PdfUtils:
     def create_image_from_pdf(self):
         if not os.path.exists(PdfUtils.output_folder):
             os.makedirs(PdfUtils.output_folder)
-        if self.downloadPdf():
+        if self.download_pdf():
 
-            self.convertToPng()
+            self.convert_to_png()
 
     def clear_datas(self):
         for filename in os.listdir(PdfUtils.output_folder):
