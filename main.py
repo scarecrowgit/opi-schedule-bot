@@ -1,8 +1,8 @@
 import asyncio
-from groupparser import GroupParser
-from inlinekeyboardgenerator import InlineKeyboardGenerator
+from group_parser import GroupParser
+from inline_keyboard_generator import InlineKeyboardGenerator
 from aiogram import Dispatcher, Bot
-from PdfUtils import PdfUtils
+from pdf_utils import PdfUtils
 from aiogram.filters import CommandStart
 from aiogram.types import *
 from aiogram.client.default import DefaultBotProperties
