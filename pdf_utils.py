@@ -1,9 +1,6 @@
-import time
-
 import requests
 from pdf2image import convert_from_path
 import os
-
 
 class PdfUtils:
     url = "https://80.78.253.10/api/schedule/"
