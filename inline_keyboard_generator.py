@@ -1,5 +1,5 @@
 from aiogram.utils.keyboard import InlineKeyboardBuilder
-from groupdata import GroupData
+from group_data import GroupData
 
 class InlineKeyboardGenerator:
     def __init__(self):

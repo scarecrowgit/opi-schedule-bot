@@ -1,18 +1,15 @@
-from groupdata import GroupData
+from group_data import GroupData
 class GroupParser:
     def __init__(self):
         pass
 
-    #for removal
-    def getGroupCodeByTitle(self, json, group_title):
+    def get_group_code_by_title(self, json, group_title):
         for element in json['lastScheduleFiles']:
             title = element['title']
             if title == group_title:
                 return element['groupCode']
 
-
-
-    def getGroupCodesList(self, json):
+    def get_group_codes_list(self, json):
         groupdata_list = list()
         for element in json['lastScheduleFiles']:
             title = element['title']
