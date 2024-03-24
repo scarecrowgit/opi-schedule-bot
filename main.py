@@ -308,6 +308,10 @@ async def misc_root(mess: Message, state: FSMContext):
 @router.message(BotStates.misc,
                 F.text == str_drop_user)
 async def misc_drop(mess: Message, state: FSMContext):
+    chat_id = mess.chat.id
+    resp = (requests
+            .get(f'http://127.0.0.1:8000/api/delete_data/?chatId={chat_id}'))
+    print(resp)
     await state.update_data({})
     await state.set_state(BotStates.reg_degree)
     await mess.answer(
@@ -346,7 +350,7 @@ def post_user_data(mess: Message, data: dict):
         'studyForm': data['study_form'],
         'course': data['course']
     }
-
+    print(body)
     post_response = requests.post('http://127.0.0.1:8000/api/set_data/',
                                   json=body)
     if post_response.status_code != 201:
