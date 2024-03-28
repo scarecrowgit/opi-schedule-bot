@@ -271,8 +271,6 @@ def generate_courses_kb(course_num):
 
     markup.resize_keyboard = True
     markup.one_time_keyboard = True
-    markup.is_persistent = True
-
     return markup
 
 
@@ -357,7 +355,6 @@ async def root_misc(mess: Message, state: FSMContext):
                 F.text == str_links)
 async def root_links(mess: Message, state: FSMContext):
     await state.set_state(Navigation.links)
-    # здесь костыль с менюшками
     await mess.answer('Полезные ссылки', reply_markup=links_menu)
 
 
@@ -380,6 +377,7 @@ async def misc_drop(mess: Message, state: FSMContext):
         'Вы учитесь на бакалавриате или магистратуре?',
         reply_markup=ReplyKeyboardMarkup(
             resize_keyboard=True,
+            is_persistent=True,
             keyboard=[[KeyboardButton(text=str_bachelor)],
                       [KeyboardButton(text=str_masters)]]
         ))
@@ -459,9 +457,7 @@ async def send_images(group_code, mess: Message):
 
 async def main() -> None:
     global bot
-    # TOKEN = input("Enter your telegram bot token: ")
-    TOKEN = '6973935650:AAGtwtcnOaeDGE40q5i4YiOOV5DJA_Byde8'
-
+    TOKEN = input("Enter your telegram bot token: ")
     bot = Bot(TOKEN, default=props)
     dp.include_router(router)
     print('token fetched, bot initialized')
